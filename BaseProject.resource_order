@@ -2,6 +2,8 @@
   "FolderOrderSettings":[],
   "ResourceOrderSettings":[
     {"name":"oBattleUnit","order":1,"path":"objects/oBattleUnit/oBattleUnit.yy",},
+    {"name":"oBattleUnitEnemy","order":3,"path":"objects/oBattleUnitEnemy/oBattleUnitEnemy.yy",},
+    {"name":"oBattleUnitPC","order":2,"path":"objects/oBattleUnitPC/oBattleUnitPC.yy",},
     {"name":"BattleFunctions","order":1,"path":"scripts/BattleFunctions/BattleFunctions.yy",},
   ],
 }
