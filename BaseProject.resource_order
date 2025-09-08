@@ -1,9 +1,13 @@
 {
   "FolderOrderSettings":[],
   "ResourceOrderSettings":[
+    {"name":"oBattleEffect","order":4,"path":"objects/oBattleEffect/oBattleEffect.yy",},
+    {"name":"oBattleFloatingText","order":5,"path":"objects/oBattleFloatingText/oBattleFloatingText.yy",},
     {"name":"oBattleUnit","order":1,"path":"objects/oBattleUnit/oBattleUnit.yy",},
     {"name":"oBattleUnitEnemy","order":3,"path":"objects/oBattleUnitEnemy/oBattleUnitEnemy.yy",},
     {"name":"oBattleUnitPC","order":2,"path":"objects/oBattleUnitPC/oBattleUnitPC.yy",},
+    {"name":"oMenu","order":1,"path":"objects/oMenu/oMenu.yy",},
     {"name":"BattleFunctions","order":1,"path":"scripts/BattleFunctions/BattleFunctions.yy",},
+    {"name":"MenuFunctions","order":2,"path":"scripts/MenuFunctions/MenuFunctions.yy",},
   ],
 }

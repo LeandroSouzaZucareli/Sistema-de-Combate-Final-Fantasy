@@ -15,10 +15,28 @@ global.actionLibrary =
 		func : function(_user, _targets)
 		{
 			var _damage = ceil(_user.strength + random_range(-_user.strength * 0.25, _user.strength * 0.25));
-			with (_targets[0]) hp = max(0, hp - _damage);
+			BattleChangeHP (_targets[0], -_damage, 0);
+		}	
+	},
+	ice :
+	{
+		name : "Ice",
+		description : "{0} casts Ice!",
+		subMenu : "Magic",
+		mpCost : 4,
+		targetRequired : true,
+		targetEnemyByDefault : true, //0: party/self, 1: enemy
+		targetAll: MODE.NEVER,
+		userAnimation : "cast",
+		effectSprite : sAttackIce,
+		effectOnTarget : MODO.ALWAYS,
+		func : function(_user, _targets)
+		{
+			var _damage = irandom_range(10,15);
+			BattleChangeHP(_targets[0], -_damage);
+			//BattleChangeHP(_user, -mpCost)
 		}
 	}
-	
 	
 }
 
@@ -39,7 +57,7 @@ global.party =
 		mpMax: 15,
 		strength: 6,
 		sprites : { idle: sLuluIdle, attack: sLuluAttack, defend: sLuluDefend, down: sLuluDown},
-		actions : []
+		actions : [global.actionLibrary.attack]
 	}
 	,
 	{
@@ -50,7 +68,7 @@ global.party =
 		mpMax: 30,
 		strength: 4,
 		sprites : { idle: sQuestyIdle, attack: sQuestyCast, cast: sQuestyCast, down: sQuestyDown},
-		actions : []
+		actions : [global.actionLibrary.attack, global.actionLibrary.ice]
 	}
 ]
 
@@ -66,11 +84,19 @@ global.enemies =
 		mpMax: 0,
 		strength: 5,
 		sprites: { idle: sSlime, attack: sSlimeAttack},
-		actions: [],
+		actions: [global.actionLibrary.attack],
 		xpValue : 15,
 		AIscript : function()
 		{
-			//enemy turn ai goes here
+			//attack random party member
+			var _action = actions[0];
+			var _possibleTargets = array_filter(oBattle.partyUnits, function(_unit, _index)
+			{
+				return (_unit.hp > 0);
+			});
+			var _target = _possibleTargets[irandom(array_length(_possibleTargets)-1)];
+			return [_action, _target];
+			
 		}
 	}
 	,
@@ -83,11 +109,18 @@ global.enemies =
 		mpMax: 0,
 		strength: 4,
 		sprites: { idle: sBat, attack: sBatAttack},
-		actions: [],
+		actions: [global.actionLibrary.attack],
 		xpValue : 18,
 		AIscript : function()
 		{
-			//enemy turn ai goes here
+			//attack random party member
+			var _action = actions[0];
+			var _possibleTargets = array_filter(oBattle.partyUnits, function(_unit, _index)
+			{
+				return (_unit.hp > 0);
+			});
+			var _target = _possibleTargets[irandom(array_length(_possibleTargets)-1)];
+			return [_action, _target];
 		}
 	}
 }
